@@ -31,10 +31,10 @@ public:
 	bool operator == (Date obj);
 
 	Date operator+=(int count);
-	/*Date operator-=(int count);
+	Date operator-=(int count);
 
 	Date operator+(Date obj);
-	Date operator-(Date obj);*/
+	/*Date operator-(Date obj);*/
 
 	friend istream& operator >> (istream & is, Date& d);
 	friend ostream& operator<<(ostream& os, Date& d);

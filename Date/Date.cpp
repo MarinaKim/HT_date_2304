@@ -225,7 +225,73 @@ Date Date::operator+(Date obj) {
 	}
 	return *this;
 }
-//
+
 //Date Date::operator-(Date obj) {
+//	this->dd -= obj.dd;
+//	this->mm -= obj.mm;
+//	this->yy -= obj.yy;
 //
+//	if (this->)
+//
+//	while (this->mm > 12) {
+//		this->mm -= 12;
+//		this->yy++;
+//	}
+//
+//	int maxDd;
+//	if (this->mm == 1 || this->mm == 3 || this->mm == 5 || this->mm == 7 || this->mm == 8 || this->mm == 10 || this->mm == 12) {
+//		maxDd = 31;
+//		while (this->dd > maxDd) {
+//			this->dd -= maxDd;
+//			this->mm++;
+//			if (this->mm > 12) {
+//				this->mm -= 12;
+//				this->yy++;
+//			}
+//		}
+//	}
+//
+//	else if (this->mm == 4 || this->mm == 6 || this->mm == 9 || this->mm == 11) {
+//		maxDd = 30;
+//
+//		while (this->dd > maxDd) {
+//
+//			this->dd -= maxDd;
+//			this->mm++;
+//			if (this->mm > 12) {
+//				this->mm -= 12;
+//				this->yy++;
+//			}
+//		}
+//	}
+//	else if (this->mm == 2) {
+//		if (visokGod(this->yy)) {
+//			maxDd = 29;
+//			if (this->dd > maxDd) {
+//				this->dd -= maxDd;
+//				this->mm++;
+//				if (this->mm > 12) {
+//					this->mm -= 12;
+//					this->yy++;
+//				}
+//			}
+//		}
+//		else {
+//			maxDd = 28;
+//
+//			if (this->dd > maxDd) {
+//				this->dd -= maxDd;
+//				this->mm++;
+//				if (this->mm > 12) {
+//					this->mm -= 12;
+//					this->yy++;
+//				}
+//			}
+//		}
+//
+//	}
+//	else {
+//		cout << "Incorrect date." << endl;
+//	}
+//	return *this;
 //}

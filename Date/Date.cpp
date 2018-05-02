@@ -8,33 +8,33 @@ bool Date::operator == (Date obj) {
 }
 
 istream& operator >> (istream & is, Date& d) {
-	is >> d.dd >>d.mm >> d.yy;
+	is >> d.dd >> d.mm >> d.yy;
 	return is;
 }
 
 ostream& operator<<(ostream& os, Date& d) {
-	os << d.dd << "\t" << d.mm <<"\t"<< d.yy << endl;
+	os << d.dd << "\t" << d.mm << "\t" << d.yy << endl;
 	return os;
 }
 
 Date Date:: operator+=(int count) {
-	
-	if (this->dd >= 1 && this->dd <= 31&&this->mm>=1&&this->mm<=12&&this->yy>=1900&&this->yy<=9999) {
+
+	if (this->dd >= 1 && this->dd <= 31 && this->mm >= 1 && this->mm <= 12 && this->yy >= 1900 && this->yy <= 9999) {
 		int maxDd;
 		if (this->mm == 1 || this->mm == 3 || this->mm == 5 || this->mm == 7 || this->mm == 8 || this->mm == 10 || this->mm == 12) {
 			maxDd = 31;
 			this->dd += count;
 			/*if (this->mm != 12) {*/
-				do {
-					if (this->dd > maxDd) {
-						this->dd -= maxDd;
-						this->mm++;
-						if (this->mm > 12) {
-							this->mm -= 12;
-							this->yy++;
-						}
+			do {
+				if (this->dd > maxDd) {
+					this->dd -= maxDd;
+					this->mm++;
+					if (this->mm > 12) {
+						this->mm -= 12;
+						this->yy++;
 					}
-				} while (this->dd > maxDd);
+				}
+			} while (this->dd > maxDd);
 			/*}
 			else {
 				do {
@@ -94,7 +94,7 @@ Date Date:: operator-=(int count) {
 			{
 				this->dd *= (-1);
 				this->mm--;
-				if (this->mm <=0) {
+				if (this->mm <= 0) {
 					this->mm += 12;
 					this->yy--;
 				}
@@ -113,30 +113,30 @@ Date Date:: operator-=(int count) {
 					{
 						this->dd *= (-1);
 						this->mm--;
-						if (this->mm <=0) {
+						if (this->mm <= 0) {
 							this->mm += 12;
 							this->yy--;
 						}
 					}
 				} while (this->dd < 0 && this->dd < maxDd);
 			}
-			}
-			
+		}
+
 		else if (this->mm == 4 || this->mm == 6 || this->mm == 9 || this->mm == 11) {
 			maxDd = -31;
 			this->dd -= count;
 			do {
-				if (this->dd <0) {
+				if (this->dd < 0) {
 					this->dd -= maxDd;
 					this->mm--;
 				}
-			} while (this->dd<0);
+			} while (this->dd < 0);
 		}
 		else if (this->mm == 2) {
 			if (visokGod(this->yy)) {
 				maxDd = -31;
 				this->dd -= count;
-				if (this->dd <0) {
+				if (this->dd < 0) {
 					this->dd -= maxDd;
 					this->mm--;
 				}
@@ -144,7 +144,7 @@ Date Date:: operator-=(int count) {
 			else {
 				maxDd = -31;
 				this->dd -= count;
-				if (this->dd <0) {
+				if (this->dd < 0) {
 					this->dd -= maxDd;
 					this->mm--;
 				}
@@ -156,10 +156,75 @@ Date Date:: operator-=(int count) {
 	}
 	return *this;
 }
-//
-//Date Date::operator+(Date obj) {
-//
-//}
+
+Date Date::operator+(Date obj) {
+
+	this->dd += obj.dd;
+	this->mm += obj.mm;
+	this->yy += obj.yy;
+
+	while (this->mm > 12) {
+		this->mm -= 12;
+		this->yy++;
+	}
+
+	int maxDd;
+	if (this->mm == 1 || this->mm == 3 || this->mm == 5 || this->mm == 7 || this->mm == 8 || this->mm == 10 || this->mm == 12) {
+		maxDd = 31;
+		while (this->dd > maxDd) {
+			this->dd -= maxDd;
+			this->mm++;
+			if (this->mm > 12) {
+				this->mm -= 12;
+				this->yy++;
+			}
+		}
+	}
+
+	else if (this->mm == 4 || this->mm == 6 || this->mm == 9 || this->mm == 11) {
+		maxDd = 30;
+
+		while (this->dd > maxDd) {
+
+			this->dd -= maxDd;
+			this->mm++;
+			if (this->mm > 12) {
+				this->mm -= 12;
+				this->yy++;
+			}
+		}
+	}
+	else if (this->mm == 2) {
+		if (visokGod(this->yy)) {
+			maxDd = 29;
+			if (this->dd > maxDd) {
+				this->dd -= maxDd;
+				this->mm++;
+				if (this->mm > 12) {
+					this->mm -= 12;
+					this->yy++;
+				}
+			}
+		}
+		else {
+			maxDd = 28;
+
+			if (this->dd > maxDd) {
+				this->dd -= maxDd;
+				this->mm++;
+				if (this->mm > 12) {
+					this->mm -= 12;
+					this->yy++;
+				}
+			}
+		}
+	
+}
+	else {
+		cout << "Incorrect date." << endl;
+	}
+	return *this;
+}
 //
 //Date Date::operator-(Date obj) {
 //

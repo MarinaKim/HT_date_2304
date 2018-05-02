@@ -28,12 +28,14 @@ public:
 	int getMm() { return mm; }
 	int getYy() { return yy; }
 
-	bool operator == (Date obj) {
-		return ((this->dd = obj.dd) && (this->mm = obj.mm) && (this->yy = obj.yy));
-	}
+	bool operator == (Date obj);
 
-	//int operator+=(int count) {
-	//	this->dd += count;
-	//	if (this->dd>)
-	//}
+	Date operator+=(int count);
+	/*Date operator-=(int count);
+
+	Date operator+(Date obj);
+	Date operator-(Date obj);*/
+
+	friend istream& operator >> (istream & is, Date& d);
+	friend ostream& operator<<(ostream& os, Date& d);
 };

@@ -18,34 +18,46 @@ ostream& operator<<(ostream& os, Date& d) {
 }
 
 Date Date:: operator+=(int count) {
-	/*this->dd += count;
-	if (this->dd>)*/
+	
 	if (this->dd >= 1 && this->dd <= 31&&this->mm>=1&&this->mm<=12&&this->yy>=1900&&this->yy<=9999) {
 		int maxDd;
 		if (this->mm == 1 || this->mm == 3 || this->mm == 5 || this->mm == 7 || this->mm == 8 || this->mm == 10 || this->mm == 12) {
 			maxDd = 31;
 			this->dd += count;
 			if (this->mm != 12) {
-				if (this->dd > maxDd) {
-					this->dd -= maxDd;
-					this->mm++;
-				}
+				do {
+					if (this->dd > maxDd) {
+						this->dd -= maxDd;
+						this->mm++;
+						if (this->mm > 12) {
+							this->mm -= 12;
+							this->yy++;
+						}
+					}
+				} while (this->dd > maxDd);
 			}
 			else {
-				if (this->dd > maxDd) {
-					this->dd -= maxDd;
-					this->mm=1;
-					this->yy++;
-				}
+				do {
+					if (this->dd > maxDd) {
+						this->dd -= maxDd;
+						this->mm++;
+						if (this->mm > 12) {
+							this->mm -= 12;
+							this->yy++;
+						}
+					}
+			} while (this->dd > maxDd);
 			}
 		}
 		else if (this->mm == 4 || this->mm == 6 || this->mm == 9 || this->mm == 11) {
 			maxDd = 30;
 			this->dd += count;
-			if (this->dd > maxDd) {
-				this->dd -= maxDd;
-				this->mm++;
-			}
+			do {
+				if (this->dd > maxDd) {
+					this->dd -= maxDd;
+					this->mm++;
+				}
+			} while (this->dd > maxDd);
 		}
 		else if (this->mm == 2) {
 			if (visokGod(this->yy)) {
